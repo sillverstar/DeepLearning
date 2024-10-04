@@ -193,7 +193,3 @@ pyrightconfig.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
-
-
-# 가상 환경 폴더
-deeplearning/
