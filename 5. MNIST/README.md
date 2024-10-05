@@ -51,14 +51,14 @@
 ### 1) 정규화(Normalize)
 입력 이미지의 픽셀 값을 0.0~1.0 사이의 값으로 정규화
    ```
-   for key in ('train_img', 'test_img'):
-     dataset[key] = dataset[key].astype(np.float32) / 255.0
+   x_train = x_train.astype(np.float32) / 255.0
+   x_test = x_test.astype(np.float32) / 255.0
    ```
 ### 2) 평탄화(Flatten)
 1차원 배열로 변환
    ```
-   for key in ('train_img', 'test_img'):
-     dataset[key] = dataset[key].reshape(-1, 28 * 28)
+   x_train = x_train.reshape(-1, 28 * 28)
+   x_test = x_test.reshape(-1, 28 * 28)
    ```
 ### 3) 원-핫 인코딩(one-hot encoding)
 정답을 뜻하는 원소만 1이고(hot), 나머지는 모두 0인 배열<br>
