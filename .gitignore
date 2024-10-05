@@ -193,3 +193,8 @@ pyrightconfig.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
+
+# https://github.com/youbeebee/deeplearning_from_scratch/tree/master
+dataset/
+common/
+images/
