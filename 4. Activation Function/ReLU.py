@@ -14,5 +14,6 @@ def ReLU2(x):
 x = np.arange(-5.0, 5.0, 0.1)
 y = ReLU1(x) # ReLU2(x)
 
+plt.style.use('dark_background')
 plt.plot(x, y)
 plt.show()

@@ -28,6 +28,8 @@ def step_function3(x):
 
 x = np.arange(-5.0, 5.0, 0.1)
 y = step_function3(x)
+
+plt.style.use('dark_background')
 plt.plot(x, y)
 plt.ylim(-0.1, 1.1)
 plt.show()
