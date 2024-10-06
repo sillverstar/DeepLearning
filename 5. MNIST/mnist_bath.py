@@ -28,57 +28,27 @@ def init_network():
 def predict(network, x):
     W1, W2, W3 = network['W1'], network['W2'], network['W3'] # 가중치
     b1, b2, b3 = network['b1'], network['b2'], network['b3'] # 편향
-    
-    shapes = []
-    shapes.append(x.shape)
-    
+
     a1 = np.dot(x, W1) + b1 # 행렬곱
-    shapes.append(a1.shape)
-    
     z1 = sigmoid(a1) # 활성화함수: sigmoid
-    shapes.append(z1.shape)
-    
     a2 = np.dot(z1, W2) + b2
-    shapes.append(a2.shape)
-    
     z2 = sigmoid(a2)
-    shapes.append(z2.shape)
-    
     a3 = np.dot(z2, W3) + b3
-    shapes.append(a3.shape)
-    
     y = softmax(a3) # 출력 함수 : softmax(분류)
-    shapes.append(y.shape)
     
-    return y, shapes
+    return y
 
-
-# Load MNIST Dataset : x, t = x_test, t_test
-x, t = get_data()
-# Create network
+x, t = get_data() # x_test, t_test
 network = init_network()
-print(len(network)) # 6 => {'b1', 'W1', 'b2', 'W2', 'b3', 'W3'}
 
-# x_test 
+batch_size = 100
 accuracy_cnt = 0
-for i in range(len(x)):
-    y, shapess = predict(network, x[i])
+
+for i in range(0, len(x), batch_size):
+    x_batch = x[i:i+batch_size]
+    y_batch = predict(network, x_batch)
     
-    p = np.argmax(y)
-    if p == t[i]:
-        accuracy_cnt += 1
-        
-print(shapess)
+    p = np.argmax(y_batch, axis=1)
+    accuracy_cnt += np.sum(p == t[i:i+batch_size])
+    
 print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
-
-print()
-
-x, _ = get_data()
-network = init_network()
-W1, W2, W3 = network['W1'], network['W2'], network['W3']
-
-print(x.shape)
-print(x[0].shape)
-print(W1.shape)
-print(W2.shape)
-print(W3.shape)
